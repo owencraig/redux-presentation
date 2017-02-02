@@ -44,6 +44,13 @@ app.get('/', function( req, res ) {
 
 });
 
+app.get('/example.md', function( req, res ) {
+
+	res.writeHead( 200, { 'Content-Type': 'text/x-markdown' } );
+	fs.createReadStream( opts.baseDir + '/example.md' ).pipe( res );
+
+});
+
 app.get( '/notes/:socketId', function( req, res ) {
 
 	fs.readFile( opts.baseDir + 'plugin/notes-server/notes.html', function( err, data ) {
